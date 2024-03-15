@@ -1,5 +1,5 @@
 import React from "react";
-import HeadPhone from '../assets/img/Band.png';
+import HeadPhone from '../assets/img/music.png';
 import './css/Login.scss';
 import {Link} from "react-router-dom";
 

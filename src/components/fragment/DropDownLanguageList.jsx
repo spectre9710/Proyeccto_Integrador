@@ -12,11 +12,11 @@ const DropDownLanguageList = () => {
 
     const listOfLanguage = [
         "Español",
-        "Ingles",
+        "English",
     ];
     const [selectedList, setSelectedList] = useState({
-        "Espaañol": false,
-        "Ingles": false,
+        "Español": false,
+        "English": false,
     });
     const handleSelected = (val, selected) => {
         setSelectedList(prevState => {
@@ -40,9 +40,7 @@ const DropDownLanguageList = () => {
 
     return (
         <div style={useStyle.component} className="dropdown">
-            <div className="dropdown-head">
-                <p>Elíge el idioma</p>
-            </div>
+          
             <div className={"lang-list"}>
                 {listOfLanguage.map((item) => {
                     return (
@@ -52,7 +50,7 @@ const DropDownLanguageList = () => {
             </div>
             <div className={"button-div"}>
                 <Button onClick={handleLangSelect} style={useStyle.button.contained}>
-                    Actualizar
+                    Aplicar cambios
                 </Button>
             </div>
         </div>

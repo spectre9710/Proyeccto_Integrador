@@ -1,4 +1,34 @@
-import React from 'react';
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*{import React from 'react';
 import '../assets/scss/Developer.scss';
 import {IconButton} from "@material-ui/core";
 import AvatarImage from "../assets/img/avatar.jpg";
@@ -49,3 +79,4 @@ const Developer = () => {
 }
 
 export default Developer;
+}*/

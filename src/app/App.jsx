@@ -1,5 +1,4 @@
 import React, {useEffect} from "react";
-import './App.scss';
 import Home from "../components/Pages/Home";
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import Login from "../components/Pages/Login";

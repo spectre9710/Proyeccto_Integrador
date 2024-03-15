@@ -43,7 +43,7 @@ const SearchBar = () => {
                                name={"searchQuery"}
                                value={searchQuery}
                                onChange={handleSearchQuery}
-                               placeholder={"Search a track..."}
+                               placeholder={"Artista o canciones..."}
                                type="text"
                                ref={searchRef}
                         />
@@ -62,8 +62,7 @@ const SearchBar = () => {
                 isSearchBarOpen &&
                 <div className={"SearchBar-customPlaceholderClose"}
                      onClick={handleSearchBarOpen}>
-                    {/*
-                    <p>Close&nbsp;</p>*/}
+
                     <CancelIcon style={{color: "grey"}} className="cancel hide" fontSize="small"/>
                 </div>
             }
