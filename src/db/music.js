@@ -118,6 +118,16 @@ let musicDB = [
     timesPlayed: 0,
     type: "pop",
     musicName: "Circles - Post Malone.mp3",
+  },
+  {
+    id: 12,
+    name: "Igual Que Un Angel",
+    author_name: "Kali Uchis ft Peso Pluma",
+    img: "Igual Que Un Angel.jpg",
+    lang: "ENGLISh",
+    timesPlayed: 0,
+    type: "pop",
+    musicName: "Igual que un angel - Kali Uchis.mp3",
   }
 ];
 
