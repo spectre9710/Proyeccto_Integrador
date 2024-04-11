@@ -16,11 +16,11 @@ const App = () => {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        if (language === null || language.includes("any")) {
+        if (language === null || language.includes("Español")) {
             dispatch(setPlaylist(musicDB))
         }
-        else if (language.includes('hindi')) {
-            alert("No hindi tracks available")
+        else if (language.includes('Ingles')) {
+            alert("No hay pistas en ingles disponibles")
         } else {
             let x = musicDB.filter((item) => (
                 item.lang && language.includes(item.lang.toLowerCase())

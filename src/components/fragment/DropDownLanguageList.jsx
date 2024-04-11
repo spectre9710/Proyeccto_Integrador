@@ -12,11 +12,11 @@ const DropDownLanguageList = () => {
 
     const listOfLanguage = [
         "Español",
-        "English",
+        "Ingles",
     ];
     const [selectedList, setSelectedList] = useState({
         "Español": false,
-        "English": false,
+        "Ingles": false,
     });
     const handleSelected = (val, selected) => {
         setSelectedList(prevState => {
