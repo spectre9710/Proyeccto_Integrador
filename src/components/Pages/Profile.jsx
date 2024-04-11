@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import './css/Profile.scss';
+import './scss/Profile.scss';
 import { Avatar } from "@material-ui/core";
 import { useSelector } from "react-redux";
 import MusicCard from "../fragment/MusicCard";
@@ -44,9 +44,9 @@ function Profile() {
                         <h3>Usuario</h3>
                         <span className={"profile-playlist"}>
                             <SideBarOptions className={"lib-sub"} Icon={PlaylistPlay}
-                                href={"/home/playlist/instrumental"} title={"Instrumental"} />
-                            <SideBarOptions className={"lib-sub"} Icon={PlaylistPlay} href={"/home/playlist/electronic"}
-                                title={"Electronic"} />
+                                href={"/home/playlist/trap"} title={"Trap"} />
+                            <SideBarOptions className={"lib-sub"} Icon={PlaylistPlay} href={"/home/playlist/pop"}
+                                title={"Pop"} />
                         </span>
                     </div>
                 </div>

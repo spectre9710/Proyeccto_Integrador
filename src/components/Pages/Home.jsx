@@ -1,5 +1,5 @@
 import React, {useContext, useEffect, useState} from "react";
-import './css/Home.scss';
+import './scss/Home.scss';
 import Navigation from "../fragment/Navigation";
 import MobileTopNavigation from "../fragment/MobileTopNavigation";
 import SideBar from "../fragment/SideBar";

@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import './css/Search.scss';
+import './scss/Search.scss';
 import Container from "../fragment/Container";
 import {useSelector} from "react-redux";
 import MusicCard from "../fragment/MusicCard";

@@ -1,6 +1,6 @@
 import React from "react";
 import HeadPhone from '../assets/img/music.png';
-import './css/Login.scss';
+import './scss/Login.scss';
 import {Link} from "react-router-dom";
 
 class Login extends React.Component{
@@ -17,7 +17,7 @@ class Login extends React.Component{
                         <div className="main-row-text">
                             <h1>Música para todos</h1>
                             <p>Sin música la vida es aburrida</p>
-                            <Link to={"/home"} className="btn">
+                            <Link to={"/login2"} className="btn">
                                 Empezar a escuchar
                             </Link>
                         </div>

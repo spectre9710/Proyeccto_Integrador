@@ -9,7 +9,7 @@ const Attribution = () => {
             <h3>Attribution</h3>
             <div className={"Attribution-div"}>
                 <div className="Attribution-text">
-                    Icons made by
+                    
                     <a href="http://www.freepik.com/" title="Freepik">&nbsp;Freepik&nbsp;</a>
                     from
                     <a href="https://www.flaticon.com/" title="Flaticon">&nbsp;www.flaticon.com</a>

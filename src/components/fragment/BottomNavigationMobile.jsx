@@ -4,11 +4,12 @@ import HomeOutlinedIcon from '@material-ui/icons/HomeOutlined';
 import AccountCircleOutlinedIcon from '@material-ui/icons/AccountCircleOutlined';
 import SearchIcon from '@material-ui/icons/Search';
 import ExploreOutlinedIcon from '@material-ui/icons/ExploreOutlined';
+import { Add } from "@material-ui/icons";
 import Button from "@material-ui/core/Button";
 import {Link} from "react-router-dom";
 
 function BottomNavigationMobile() {
-    const [menuItems, setMenuItem] = useState([
+    const [menuItems] = useState([
         {
             id: 0,
             icon: <HomeOutlinedIcon/>,
@@ -31,7 +32,13 @@ function BottomNavigationMobile() {
             id: 3,
             icon: <ExploreOutlinedIcon/>,
             href: "/home/about",
-            label: "Acerca de"
+            label: "Nosotros"
+        },
+        {
+            id: 4,
+            icon: <Add/>,
+            href: "/home/add",
+            label: "Agregar"
         }
     ]);
     let currPath = window.location.pathname;

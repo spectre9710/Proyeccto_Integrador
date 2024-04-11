@@ -128,6 +128,16 @@ let musicDB = [
     timesPlayed: 0,
     type: "pop",
     musicName: "Igual que un angel - Kali Uchis.mp3",
+  },
+  {
+    id: 13,
+    name: "Vamonos a Marte",
+    author_name: "Kevin Kaarl",
+    img: "Hasta el fin del mundo.jpeg",
+    lang: "ENGLISh",
+    timesPlayed: 0,
+    type: "pop",
+    musicName: "Vamonos a Marte - Kevin Kaarl.mp3",
   }
 ];
 
