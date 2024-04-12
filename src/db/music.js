@@ -16,7 +16,7 @@ let musicDB = [
     img: "Nadie sabe lo que va a pasar mañana.png",
     lang: "Español",
     timesPlayed: 0,
-    type: "regueton",
+    type: "reggaeton",
     musicName: "Perro Negro - Bad Bunny.mp3",
   },
   {
@@ -46,7 +46,7 @@ let musicDB = [
     img: "Un Verano Sin Ti.jpg",
     lang: "Español",
     timesPlayed: 0,
-    type: "regueton",
+    type: "reggaeton",
     musicName: "Me Porto Bonito - Bad Bunny.mp3",
   },
   {
@@ -56,7 +56,7 @@ let musicDB = [
     img: "Colores.jpeg",
     lang: "Español",
     timesPlayed: 0,
-    type: "regueton",
+    type: "reggaeton",
     musicName: "Azul - J Balvin.mp3",
   },
   {
@@ -66,7 +66,7 @@ let musicDB = [
     img: "La Rompe Corazones.jpg",
     lang: "Español",
     timesPlayed: 0,
-    type: "regueton",
+    type: "reggaeton",
     musicName: "La Rompe Corazones  - Daddy Yankee.mp3",
   },
   {
@@ -76,7 +76,7 @@ let musicDB = [
     img: "Despacito.avif",
     lang: "Español",
     timesPlayed: 0,
-    type: "regueton",
+    type: "reggaeton",
     musicName: "Despacito - Luis Fonsi.mp3",
   },
   {
@@ -86,7 +86,7 @@ let musicDB = [
     img: "Relación Remix.jpeg",
     lang: "Español",
     timesPlayed: 0,
-    type: "regueton",
+    type: "reggaeton",
     musicName: "Relación Remix - Sech.mp3",
   },
   {
@@ -146,7 +146,7 @@ let musicDB = [
     img: "Chupon.jpg",
     lang: "Español",
     timesPlayed: 0,
-    type: "regueton",
+    type: "reggaeton",
     musicName: "Chupon - Yeri Mua.mp3",
   },
   {
@@ -178,6 +178,16 @@ let musicDB = [
     timesPlayed: 0,
     type: "pop",
     musicName: "Sign of the Times - Harry Styles.mp3",
+  },
+  {
+    id: 18,
+    name: "Botella Tra Botella",
+    author_name: "Christian Nodal, Gera MX",
+    img: "Botella tras botella.jpeg",
+    lang: "Ingles",
+    timesPlayed: 0,
+    type: "pop",
+    musicName: "Botella Tras Botella - Christian Nodal.mp3",
   }
 ];
 

@@ -24,7 +24,7 @@ function SideBar() {
                 <p className={"p1"}>
                     <span>Tu playlist</span>
                 </p>
-                <SideBarOptions className={"lib-sub"} Icon={PlaylistPlay} href={"/home/playlist/regueton"} title={"Regueton"} />
+                <SideBarOptions className={"lib-sub"} Icon={PlaylistPlay} href={"/home/playlist/reggaeton"} title={"Reggaeton"} />
                 <SideBarOptions className={"lib-sub"} Icon={PlaylistPlay} href={"/home/playlist/trap"} title={"Trap"} />
                 <SideBarOptions className={"lib-sub"} Icon={PlaylistPlay} href={"/home/playlist/pop"} title={"Pop"} />
             </div>
