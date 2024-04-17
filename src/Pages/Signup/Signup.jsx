@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import styles from "./styles.module.css";
 
@@ -9,7 +9,7 @@ const Signup = () => {
         email: "",
         password: "",
     });
-    const [error] = useState("");
+    const [error, setError] = useState("");
     const history = useHistory();
 
     const handleChange = ({ currentTarget: input }) => {
@@ -18,16 +18,9 @@ const Signup = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        
-        // Simulando el proceso de registro sin comunicación con la base de datos
-        // Aquí podrías realizar validaciones o procesos adicionales según tus necesidades
-        
-        // Simulamos un retraso de 1 segundo para mostrar una acción de registro
-        setTimeout(() => {
-            // Redirigimos al usuario a la página de inicio de sesión después de registrarse
-            history.push("/home"); // Corrección aquí
-            console.log("Usuario registrado exitosamente");
-        }, 1000);
+
+        localStorage.setItem("userData", JSON.stringify(data));
+        history.push("/login2");
     };
 
     return (

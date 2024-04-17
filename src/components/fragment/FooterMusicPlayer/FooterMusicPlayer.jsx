@@ -1,4 +1,4 @@
-import React, {useContext, useEffect, useRef, useState} from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import '../FooterMusicPlayer/FooterPlayer.scss';
 import RepeatIcon from '@material-ui/icons/Repeat';
 import RepeatOneIcon from '@material-ui/icons/RepeatOne';
@@ -8,34 +8,40 @@ import PlayArrowIcon from '@material-ui/icons/PlayArrow';
 import PauseIcon from '@material-ui/icons/Pause';
 import VolumeUpIcon from '@material-ui/icons/VolumeUp';
 import VolumeOffIcon from '@material-ui/icons/VolumeOff';
+import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
+import FavoriteIcon from '@material-ui/icons/Favorite';
 import Slider from "@material-ui/core/Slider";
-import {Avatar} from "@material-ui/core";
+import { Avatar } from "@material-ui/core";
 import ControlsToggleButton from "../ControlsToggleButton/ControlsToggleButton";
 import Name from "../Name/Name";
-import {ThemeContext} from "../../../api/Theme";
-import {useDispatch, useSelector} from "react-redux";
-import {setBannerOpen, setCurrentPlaying} from "../../../actions/actions";
+import { ThemeContext } from "../../../api/Theme";
+import { useDispatch, useSelector } from "react-redux";
+import { setBannerOpen, setCurrentPlaying } from "../../../actions/actions";
 import Button from "@material-ui/core/Button";
+import MoreVertIcon from '@material-ui/icons/MoreVert';
+import PlaylistModal from "../PlaylistModal/PlaylistModal"; // Asegúrate de importar el componente PlaylistModal
 
-function FooterMusicPlayer({music}) {
+function FooterMusicPlayer({ music }) {
 
-    const [{id, name, author_name, img, musicName}, setCurrTrack] = useState(music);
+    const [{ id, name, author_name, img, musicName }, setCurrTrack] = useState(music);
     const [isRepeatClicked, setRepeatClick] = useState(false);
     const [isPrevClicked, setPrevClicked] = useState(false);
     const [isNextClicked, setNextClicked] = useState(false);
     const [isPlaying, setPlayPauseClicked] = useState(false);
     const [isVolumeClicked, setVolumeClicked] = useState(false);
+    const [isLiked, setIsLiked] = useState(false); // Estado para indicar si la música es favorita
     const [volume, setVolume] = useState(50);
     const [seekTime, setSeekTime] = useState(0);
     const [duration, setDuration] = useState(0);
     const [currTime, setCurrTime] = useState(0);
-    const [bannerToggle,setBannerToggle] = useState(false);
+    const [bannerToggle, setBannerToggle] = useState(false);
+    const [playlistModalOpen, setPlaylistModalOpen] = useState(false);
 
     const audioElement = useRef();
     const dispatch = useDispatch();
-    const {playlists} = useSelector(state => state.musicReducer);
+    const { playlists } = useSelector(state => state.musicReducer);
     const useStyle = useContext(ThemeContext);
-    const pointer = { cursor: "pointer",  color: useStyle.theme };
+    const pointer = { cursor: "pointer", color: useStyle.theme };
 
     const handleToggle = (type, val) => {
         switch (type) {
@@ -58,26 +64,33 @@ function FooterMusicPlayer({music}) {
                 break;
         }
     };
+
+    const handleMenuOpen = () => {
+        setPlaylistModalOpen(true);
+    };
+
     const handleSeekChange = (event, newValue) => {
-        audioElement.current.currentTime =(newValue*duration)/100;
+        audioElement.current.currentTime = (newValue * duration) / 100;
         setSeekTime(newValue)
     };
     const handleVolumeChange = (event, newValue) => {
         setVolume(newValue);
     };
-    const handleBannerToggle = ()=> {
+    const handleBannerToggle = () => {
         setBannerToggle(!bannerToggle);
     };
 
+    const handleLikeClick = () => {
+        setIsLiked(!isLiked);
+    };
 
-    useEffect(()=>{
+    useEffect(() => {
         dispatch(setBannerOpen(bannerToggle));
-    },[dispatch,bannerToggle]);
-
+    }, [dispatch, bannerToggle]);
 
     useEffect(() => {
         isPlaying
-            ? audioElement.current.play().then(()=>{}).catch((e)=>{audioElement.current.pause(); audioElement.current.currentTime=0;})
+            ? audioElement.current.play().then(() => { }).catch((e) => { audioElement.current.pause(); audioElement.current.currentTime = 0; })
             : audioElement.current.pause();
         audioElement.current.loop = isRepeatClicked;
         audioElement.current.volume = volume / 100;
@@ -96,34 +109,31 @@ function FooterMusicPlayer({music}) {
         setCurrTrack(music);
     }, [music]);
 
-
     useEffect(() => {
         setSeekTime((currTime) / (duration / 100))
     }, [currTime, duration]);
 
-
-
-    useEffect(()=>{
-        audioElement.current.onended = ()=> {
+    useEffect(() => {
+        audioElement.current.onended = () => {
             setNextClicked(true);
         };
-    })
+    });
 
-    useEffect(()=>{
-        if (isNextClicked){
-            let currTrackId = (id+1) % playlists.length;
+    useEffect(() => {
+        if (isNextClicked) {
+            let currTrackId = (id + 1) % playlists.length;
             dispatch(setCurrentPlaying(playlists[currTrackId]));
             setNextClicked(false);
         }
-        if (isPrevClicked){
-            let currTrackId = (id-1) % playlists.length;
-            if ((id-1)<0){
+        if (isPrevClicked) {
+            let currTrackId = (id - 1) % playlists.length;
+            if ((id - 1) < 0) {
                 currTrackId = playlists.length - 1;
             }
             dispatch(setCurrentPlaying(playlists[currTrackId]));
             setPrevClicked(false);
         }
-    },[dispatch, id, isNextClicked, isPrevClicked, playlists]);
+    }, [dispatch, id, isNextClicked, isPrevClicked, playlists]);
 
 
     function formatTime(secs) {
@@ -134,50 +144,56 @@ function FooterMusicPlayer({music}) {
             s = Math.floor((t - Date.parse("1/1/70")) / 3600000) + s.substr(2);
         return s.substring(3);
     }
+
     return (
         <div style={useStyle.component} className={"footer-player"}>
             <div className="playback">
                 {
                     !isNaN(seekTime) &&
-                    <Slider style={{color: useStyle.theme}}
-                            className={"playback-completed"}
-                            value={seekTime} onChange={handleSeekChange}/>
+                    <Slider style={{ color: useStyle.theme }}
+                        className={"playback-completed"}
+                        value={seekTime} onChange={handleSeekChange} />
                 }
             </div>
             <Button
-                    startIcon={<Avatar variant="square" src={require("../../../assets/img/" + img)} alt={name}/>}
-                    onClick={handleBannerToggle}
-                    className="curr-music-container">
+                startIcon={<Avatar variant="square" src={require("../../../assets/img/" + img)} alt={name} />}
+                onClick={handleBannerToggle}
+                className="curr-music-container">
                 <div className="curr-music-details">
-                    <Name name={name} className={"song-name"} length={name.length}/>
+                    <Name name={name} className={"song-name"} length={name.length} />
                     <Name name={author_name} className={"author-name"}
-                          length={author_name.length}/>
+                        length={author_name.length} />
                 </div>
             </Button>
             <div className="playback-controls">
-
                 <ControlsToggleButton style={pointer} type={"repeat"}
-                                      defaultIcon={<RepeatIcon fontSize={"large"}/>}
-                                      changeIcon={<RepeatOneIcon fontSize={"large"}/>}
-                                      onClicked={handleToggle}/>
+                    defaultIcon={<RepeatIcon fontSize={"large"} />}
+                    changeIcon={<RepeatOneIcon fontSize={"large"} />}
+                    onClicked={handleToggle} />
 
                 <ControlsToggleButton style={pointer} type={"prev"}
-                                      defaultIcon={<SkipPreviousIcon fontSize={"large"}/>}
-                                      changeIcon={<SkipPreviousIcon fontSize={"large"}/>}
-                                      onClicked={handleToggle}/>
+                    defaultIcon={<SkipPreviousIcon fontSize={"large"} />}
+                    changeIcon={<SkipPreviousIcon fontSize={"large"} />}
+                    onClicked={handleToggle} />
 
-                <audio ref={audioElement} src={require("../../../assets/music/" + musicName)} preload={"metadata"}/>
+                <audio ref={audioElement} src={require("../../../assets/music/" + musicName)} preload={"metadata"} />
 
                 <ControlsToggleButton style={pointer} type={"play-pause"}
-                                      defaultIcon={<PlayArrowIcon fontSize={"large"}/>}
-                                      changeIcon={<PauseIcon fontSize={"large"}/>}
-                                      onClicked={handleToggle}/>
-
+                    defaultIcon={<PlayArrowIcon fontSize={"large"} />}
+                    changeIcon={<PauseIcon fontSize={"large"} />}
+                    onClicked={handleToggle} />
 
                 <ControlsToggleButton style={pointer} type={"next"}
-                                      defaultIcon={<SkipNextIcon fontSize={"large"}/>}
-                                      changeIcon={<SkipNextIcon fontSize={"large"}/>}
-                                      onClicked={handleToggle}/>
+                    defaultIcon={<SkipNextIcon fontSize={"large"} />}
+                    changeIcon={<SkipNextIcon fontSize={"large"} />}
+                    onClicked={handleToggle} />
+                <Button onClick={handleLikeClick} className="favorite" style={{ color: useStyle.theme }}>
+                    {isLiked ? <FavoriteIcon /> : <FavoriteBorderIcon />}
+                </Button>
+<Button onClick={handleMenuOpen} className="menu-button" style={pointer}>
+                    <MoreVertIcon fontSize="large" />
+                </Button>
+                <PlaylistModal open={playlistModalOpen} onClose={() => setPlaylistModalOpen(false)} />
             </div>
             <div className="playback-widgets">
                 <div className="timer">
@@ -188,15 +204,14 @@ function FooterMusicPlayer({music}) {
                     </p>
                 </div>
                 <div className={"slider"}>
-                    <Slider style={{color: useStyle.theme}} value={volume} onChange={handleVolumeChange}/>
+                    <Slider style={{ color: useStyle.theme }} value={volume} onChange={handleVolumeChange} />
                 </div>
                 <ControlsToggleButton style={pointer} type={"volume"}
-                                      defaultIcon={<VolumeUpIcon/>}
-                                      changeIcon={<VolumeOffIcon/>}
-                                      onClicked={handleToggle}/>
+                    defaultIcon={<VolumeUpIcon />}
+                    changeIcon={<VolumeOffIcon />}
+                    onClicked={handleToggle} />
             </div>
         </div>
-
     );
 }
 

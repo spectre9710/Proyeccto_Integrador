@@ -14,6 +14,9 @@ function Navigation() {
     const [isLanguageListOpen, setLangList] = useState(false);
     const [isOpenProfile, setOpenProfile] = useState(false);
 
+    // Obtener la inicial del nombre del usuario desde el almacenamiento local
+    const storedUserData = JSON.parse(localStorage.getItem("userData"));
+    const userInitial = storedUserData ? storedUserData.firstName.charAt(0).toUpperCase() : '';
 
     function handleOpenLanguageList() {
         if (isOpenProfile === true)
@@ -46,7 +49,7 @@ function Navigation() {
             </div>
             <div className="profile" onClick={handleOpenProfile}>
                 <Button className={"Dropdown-btn"}
-                    startIcon={<Avatar style={{ width: '30px', height: '30px', padding: '18px' }} >A</Avatar>}
+                    startIcon={<Avatar style={{ width: '30px', height: '30px', padding: '18px' }} >{userInitial}</Avatar>}
                     endIcon={isOpenProfile ? <ExpandMoreIcon /> : <ExpandLessIcon />}>
 
                 </Button>

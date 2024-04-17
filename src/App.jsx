@@ -4,10 +4,10 @@ import { ThemeContext, themes } from "./api/Theme";
 import musicDB from "./db/music";
 import { useDispatch, useSelector } from "react-redux";
 import { setPlaylist } from "./actions/actions";
-import Login2 from "./Pages/Login2";
-import Signup from "./Pages/Singup";
+import Signup from "./Pages/Signup/Signup";
 import Login from "./Pages/Login/Login";
 import Home from "./Pages/Home/Home";
+import Login2 from "./Pages/Login2/Login2";
 
 
 const App = () => {

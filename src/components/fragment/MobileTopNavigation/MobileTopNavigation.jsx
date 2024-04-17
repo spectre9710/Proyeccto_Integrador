@@ -6,7 +6,7 @@ import Brand from "../Brand/Brand";
 class MobileTopNavigation extends React.Component{
     render() {
         return(
-            <nav className="mob-top-navigation"z>
+            <nav className="mob-top-navigation">
                 <Brand/>
                 <SearchBar/>
             </nav>

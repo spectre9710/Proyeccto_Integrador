@@ -32,6 +32,13 @@ function Profile() {
         Grade(document.querySelectorAll('.gradient-wrap'))
     });
 
+    const storedUserData = JSON.parse(localStorage.getItem("userData"));
+    const userName = storedUserData ? capitalizeFirstLetter(storedUserData.firstName.split(' ')[0]) : 'Usuario';
+
+    function capitalizeFirstLetter(string) {
+        return string.charAt(0).toUpperCase() + string.slice(1);
+    }
+
     return (
         <Container>
             <div className={"Profile"}>
@@ -41,7 +48,7 @@ function Profile() {
                         VS
                     </Avatar>
                     <div className="profile-detail">
-                        <h3>Usuario</h3>
+                        <h3>{userName}</h3>
                         <span className={"profile-playlist"}>
                             <SideBarOptions className={"lib-sub"} Icon={PlaylistPlay}
                                 href={"/home/playlist/trap"} title={"Trap"} />
