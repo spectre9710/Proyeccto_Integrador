@@ -19,7 +19,10 @@ const Signup = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
+        // Guardar los datos del usuario en el almacenamiento local
         localStorage.setItem("userData", JSON.stringify(data));
+
+        // Redirigir al usuario a la página de inicio de sesión
         history.push("/login2");
     };
 

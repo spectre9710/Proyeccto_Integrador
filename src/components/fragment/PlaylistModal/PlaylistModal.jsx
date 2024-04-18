@@ -81,7 +81,6 @@ const PlaylistModal = ({ open, onClose }) => {
                             <Add className="icon" />
                             Crear nueva playlist
                         </li>
-                        {/* Agrega más listas de reproducción aquí si es necesario */}
                     </ul>
                 </div>
             </Modal>
