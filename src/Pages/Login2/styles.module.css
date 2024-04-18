@@ -117,3 +117,51 @@
 	color: white;
 	margin: 10px;
 }
+
+@media only screen and (max-width: 429px) {
+    .login_form_container {
+        flex-direction: column-reverse; /* Cambiar la dirección de los elementos en pantallas pequeñas */
+        height: auto; /* Ajustar la altura automáticamente */
+    }
+
+    .left {
+        border-radius: 0; /* Eliminar la curvatura en las esquinas */
+        border-top-left-radius: 10px; /* Restaurar la curvatura en la esquina superior izquierda */
+        border-top-right-radius: 10px; /* Restaurar la curvatura en la esquina superior derecha */
+        border-bottom-left-radius: 0; /* Eliminar la curvatura en la esquina inferior izquierda */
+    }
+
+    .right {
+        border-radius: 0; /* Eliminar la curvatura en las esquinas */
+        border-top-left-radius: 0; /* Eliminar la curvatura en la esquina superior izquierda */
+        border-top-right-radius: 10px; /* Restaurar la curvatura en la esquina superior derecha */
+        border-bottom-left-radius: 10px; /* Restaurar la curvatura en la esquina inferior izquierda */
+        border-bottom-right-radius: 0; /* Eliminar la curvatura en la esquina inferior derecha */
+    }
+
+    .form_container,
+    .right {
+        width: 100%; /* Asegurar que los elementos ocupen todo el ancho */
+    }
+
+    .left h1,
+    .right h1 {
+        font-size: 30px; /* Reducir el tamaño del título en pantallas pequeñas */
+    }
+
+    .input {
+        width: calc(100% - 30px); /* Ajustar el ancho del input para compensar el padding */
+        margin: 5px 0; /* Ajustar el margen */
+    }
+
+    .error_msg {
+        width: calc(100% - 30px); /* Ajustar el ancho del mensaje de error para compensar el padding */
+        margin: 5px 0; /* Ajustar el margen */
+    }
+
+    .white_btn,
+    .green_btn {
+        width: calc(100% - 30px); /* Ajustar el ancho del botón para compensar el padding */
+        margin: 5px 0; /* Ajustar el margen */
+    }
+}

@@ -11,22 +11,18 @@ import { PlaylistPlay, Favorite } from "@material-ui/icons";
 function Profile() {
 
     const { playlists } = useSelector(state => state.musicReducer);
-    const [mostPlayed, setMostPlayed] = useState([]);
+    const [favoriteSongs, setFavoriteSongs] = useState([]);
 
-    function sortByProperty(property) {
-        return function (a, b) {
-            if (a[property] > b[property])
-                return 1;
-            else if (a[property] < b[property])
-                return -1;
-
-            return 0;
-        }
-    }
+    
 
     useEffect(() => {
-        setMostPlayed(playlists.sort(sortByProperty("timesPlayed")));
+        const storedFavoriteSongs = JSON.parse(localStorage.getItem("favoriteSongs")) || [];
+        const filteredSongs = playlists.filter(song => storedFavoriteSongs.includes(song.id));
+        setFavoriteSongs(filteredSongs);
     }, [playlists]);
+    
+
+   
 
     useEffect(() => {
         Grade(document.querySelectorAll('.gradient-wrap'))
@@ -63,14 +59,11 @@ function Profile() {
                     <div>
                         <h3>Favoritos <Favorite/> </h3> 
                         <div className="most-played">
-                            {
-                                mostPlayed.map((item, index) => (
-                                    index <= 4 && <MusicCard key={item.id} music={item} />
-                                ))
-                            }
+                            {favoriteSongs.map((item) => (
+                                <MusicCard key={item.id} music={item} />
+                            ))}
                         </div>
                     </div>
-
                 </div>
             </div>
         </Container>

@@ -14,14 +14,13 @@ const Login2 = () => {
         e.preventDefault();
         const { email, password } = data;
 
-        // Obtener los datos de usuario almacenados en el almacenamiento local
         const userDataString = localStorage.getItem("userData");
         if (userDataString) {
             const userData = JSON.parse(userDataString);
             
-            // Verificar si las credenciales coinciden con los datos almacenados
+      
             if (email === userData.email && password === userData.password) {
-                // Redirigir al usuario a la página principal después de iniciar sesión
+                
                 window.location = "/home";
             } else {
                 setError("Correo electrónico o contraseña incorrectos");
