@@ -19,6 +19,16 @@ const Signup = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
+        // Verificar si el correo electrónico ya existe en el almacenamiento local
+        const storedData = localStorage.getItem("userData");
+        if (storedData) {
+            const existingData = JSON.parse(storedData);
+            if (existingData.email === data.email) {
+                setError("El correo electrónico ya está registrado");
+                return;
+            }
+        }
+
         // Guardar los datos del usuario en el almacenamiento local
         localStorage.setItem("userData", JSON.stringify(data));
 
