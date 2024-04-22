@@ -30,6 +30,10 @@
 	border-bottom-left-radius: 10px;
 }
 
+.left h1 {
+	margin-bottom: 20px;
+}
+
 .form_container {
 	display: flex;
 	flex-direction: column;
@@ -83,7 +87,7 @@
 }
 
 .right h1 {
-	margin-top: 0;
+	margin-bottom: 20px;
 	color: white;
 	font-size: 40px;
 	align-self: center;
@@ -91,6 +95,7 @@
 		"Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
 		sans-serif;
 }
+
 
 .white_btn,
 .green_btn {
@@ -118,50 +123,41 @@
 	margin: 10px;
 }
 
-@media only screen and (max-width: 429px) {
-    .login_form_container {
-        flex-direction: column-reverse; /* Cambiar la dirección de los elementos en pantallas pequeñas */
-        height: auto; /* Ajustar la altura automáticamente */
-    }
+@media only screen and (max-width: 431px) {
 
-    .left {
-        border-radius: 0; /* Eliminar la curvatura en las esquinas */
-        border-top-left-radius: 10px; /* Restaurar la curvatura en la esquina superior izquierda */
-        border-top-right-radius: 10px; /* Restaurar la curvatura en la esquina superior derecha */
-        border-bottom-left-radius: 0; /* Eliminar la curvatura en la esquina inferior izquierda */
-    }
+	.login_form_container {
+		flex-direction: column;
+		height: auto;
+	}
 
-    .right {
-        border-radius: 0; /* Eliminar la curvatura en las esquinas */
-        border-top-left-radius: 0; /* Eliminar la curvatura en la esquina superior izquierda */
-        border-top-right-radius: 10px; /* Restaurar la curvatura en la esquina superior derecha */
-        border-bottom-left-radius: 10px; /* Restaurar la curvatura en la esquina inferior izquierda */
-        border-bottom-right-radius: 0; /* Eliminar la curvatura en la esquina inferior derecha */
-    }
+	.right,
+	.left {
+		min-height: 50vh;
+	}
 
-    .form_container,
-    .right {
-        width: 100%; /* Asegurar que los elementos ocupen todo el ancho */
-    }
+	.form_container,
+	.right {
+		width: 100%;
+	}
 
-    .left h1,
-    .right h1 {
-        font-size: 30px; /* Reducir el tamaño del título en pantallas pequeñas */
-    }
+	.left h1,
+	.right h1 {
+		font-size: 35px;
+		margin-bottom: 20px;
+	}
 
-    .input {
-        width: calc(100% - 30px); /* Ajustar el ancho del input para compensar el padding */
-        margin: 5px 0; /* Ajustar el margen */
-    }
+	.input {
+		width: calc(100% - 30px);
+		margin: 10px 0;
+	}
 
-    .error_msg {
-        width: calc(100% - 30px); /* Ajustar el ancho del mensaje de error para compensar el padding */
-        margin: 5px 0; /* Ajustar el margen */
-    }
+	.error_msg {
+		width: calc(100% - 30px);
+		margin: 5px 0;
+	}
 
-    .white_btn,
-    .green_btn {
-        width: calc(100% - 30px); /* Ajustar el ancho del botón para compensar el padding */
-        margin: 5px 0; /* Ajustar el margen */
-    }
+	.green_btn {
+		width: calc(100% - 30px);
+		margin: 20px 0;
+	}
 }

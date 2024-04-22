@@ -1,4 +1,3 @@
-// DropDownProfile.js
 import React, { useContext } from "react";
 import '../DropDownProfile/DropDownProfile.scss';
 import { ThemeContext } from "../../../api/Theme";

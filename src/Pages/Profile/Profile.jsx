@@ -13,16 +13,16 @@ function Profile() {
     const { playlists } = useSelector(state => state.musicReducer);
     const [favoriteSongs, setFavoriteSongs] = useState([]);
 
-    
+
 
     useEffect(() => {
         const storedFavoriteSongs = JSON.parse(localStorage.getItem("favoriteSongs")) || [];
         const filteredSongs = playlists.filter(song => storedFavoriteSongs.includes(song.id));
         setFavoriteSongs(filteredSongs);
     }, [playlists]);
-    
 
-   
+
+
 
     useEffect(() => {
         Grade(document.querySelectorAll('.gradient-wrap'))
@@ -50,21 +50,28 @@ function Profile() {
                                 href={"/home/playlist/trap"} title={"Trap"} />
                             <SideBarOptions className={"lib-sub"} Icon={PlaylistPlay} href={"/home/playlist/pop"}
                                 title={"Pop"} />
-                                <SideBarOptions className={"lib-sub"} Icon={PlaylistPlay}
+                            <SideBarOptions className={"lib-sub"} Icon={PlaylistPlay}
                                 href={"/home/playlist/reggaeton"} title={"Reggaeton"} />
                         </span>
                     </div>
                 </div>
                 <div className="bottom-profile">
-                    <div>
-                        <h3>Favoritos <Favorite/> </h3> 
-                        <div className="most-played">
-                            {favoriteSongs.map((item) => (
-                                <MusicCard key={item.id} music={item} />
-                            ))}
+                    {favoriteSongs.length > 0 ? (
+                        <div>
+                            <h3>Favoritos <Favorite /> </h3>
+                            <div className="most-played">
+                                {favoriteSongs.map((item) => (
+                                    <MusicCard key={item.id} music={item} />
+                                ))}
+                            </div>
                         </div>
-                    </div>
+                    ) : (
+                        <div className="empty-favorites">
+                            <h3>Bienvenido a Haimusic!</h3>
+                            <p>¡Gracias por elegirnos como tu plataforma de música favorita! Sumérgete en nuestro catálogo y disfruta de una experiencia musical única.</p>                        </div>
+                    )}
                 </div>
+
             </div>
         </Container>
     );

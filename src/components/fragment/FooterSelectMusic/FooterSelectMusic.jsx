@@ -9,7 +9,7 @@ function FooterSelectMusic() {
     return (
         <div style={{backgroundColor:useStyle.subTheme}} className={"Footer_Select_Music"}>
             <Link to={"/home"}>
-                Seleccione una canción para continuar
+                Selecciona una canción para continuar
             </Link>
         </div>
     );

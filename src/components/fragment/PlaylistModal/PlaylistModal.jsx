@@ -7,13 +7,13 @@ const CreatePlaylistModal = ({ open, onClose, onCreatePlaylist }) => {
     const [playlistName, setPlaylistName] = useState("");
 
     const handleCreatePlaylist = () => {
-       
+
         if (playlistName.trim() !== "") {
-            
+
             onCreatePlaylist(playlistName);
             onClose();
         } else {
-          
+
             alert("Por favor, ingresa un nombre para la playlist.");
         }
     };
@@ -38,31 +38,31 @@ const CreatePlaylistModal = ({ open, onClose, onCreatePlaylist }) => {
 
 const PlaylistModal = ({ open, onClose }) => {
     const [playlists, setPlaylists] = useState([
-        
+
     ]);
 
     const handlePlaylistSelection = (playlistId) => {
-       
+
         console.log("Playlist seleccionada:", playlistId);
         onClose();
     };
 
     const handleCreateNewPlaylist = () => {
-        
+
         console.log("Crear nueva playlist");
-       
+
         setCreatePlaylistModalOpen(true);
     };
 
     const addPlaylist = (playlistName) => {
-      
+
         const newPlaylistId = playlists.length + 1;
-       
+
         const newPlaylist = { id: newPlaylistId, name: playlistName };
         setPlaylists([...playlists, newPlaylist]);
     };
 
-   
+
     const [createPlaylistModalOpen, setCreatePlaylistModalOpen] = useState(false);
 
     return (
