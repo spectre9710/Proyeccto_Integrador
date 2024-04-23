@@ -1,4 +1,4 @@
-import React, {useContext, useEffect, useState} from "react";
+import React, { useContext, useEffect, useState } from "react";
 import './Home.scss';
 import Navigation from "../../components/fragment/Navigation/Navigation";
 import MobileTopNavigation from "../../components/fragment/MobileTopNavigation/MobileTopNavigation";
@@ -6,8 +6,8 @@ import SideBar from "../../components/fragment/SideBar/SideBar";
 import FooterMusicPlayer from "../../components/fragment/FooterMusicPlayer/FooterMusicPlayer";
 import BottomNavigationMobile from "../../components/fragment/BottomNavigation/BottomNavigationMobile";
 import MusicCardContainer from "../../components/fragment/MusicCardContainer/MusicCardContainer";
-import {useSelector} from "react-redux";
-import {ThemeContext} from "../../api/Theme";
+import { useSelector } from "react-redux";
+import { ThemeContext } from "../../api/Theme";
 import Profile from "../Profile/Profile";
 import AddMusic from "../../components/fragment/AddMusic/AddMusic";
 import FooterSelectMusic from "../../components/fragment/FooterSelectMusic/FooterSelectMusic";
@@ -15,23 +15,26 @@ import CurrentPlayingLarge from "../../components/fragment/CurrentPlayingLarge/C
 import Search from "../Search/Search";
 import About from "../About/About";
 import Playlist from "../../components/fragment/Playlist/Playlist";
-import {Skeleton} from "@material-ui/lab";
+import { Skeleton } from "@material-ui/lab";
+import Album from "../Album/Album";
 
 function getCurrPage(pathName) {
     switch (pathName) {
         case "/home":
-            return <MusicCardContainer/>
+            return <MusicCardContainer />
         case "/home/search":
-            return <Search/>
+            return <Search />
         case "/home/profile":
-            return <Profile/>
+            return <Profile />
         case "/home/add":
-            return <AddMusic/>
+            return <AddMusic />
         case "/home/about":
-            return <About/>
+            return <About />
+        case "/home/album":
+            return <Album />
         default:
             if (pathName.startsWith("/home/playlist/")) {
-                return <Playlist/>
+                return <Playlist />
             }
             return null
     }
@@ -42,7 +45,7 @@ function Home() {
 
     const [screenSize, setScreenSize] = useState(undefined);
     const [currMusic, setCurrMusic] = useState(null);
-    const [Page, setCurrPage] = useState(<MusicCardContainer/>);
+    const [Page, setCurrPage] = useState(<MusicCardContainer />);
 
     let pathname = window.location.pathname;
     useEffect(() => {
@@ -61,7 +64,7 @@ function Home() {
     });
 
     const useStyle = useContext(ThemeContext);
-    const {playing, bannerOpen} = useSelector(state => state.musicReducer);
+    const { playing, bannerOpen } = useSelector(state => state.musicReducer);
 
 
     useEffect(() => {
@@ -79,18 +82,18 @@ function Home() {
             {
                 !loaded ?
                     <div className="Home-skeleton">
-                        <Skeleton animation={"wave"} variant={"rect"} height={"100vh"}/>
+                        <Skeleton animation={"wave"} variant={"rect"} height={"100vh"} />
                     </div>
                     :
                     <>
                         {
                             screenSize <= 970 ?
-                                <MobileTopNavigation/> :
-                                <Navigation/>
+                                <MobileTopNavigation /> :
+                                <Navigation />
                         }
                         <section className={"home-music-container"}>
                             <div className="sidebar-home">
-                                <SideBar/>
+                                <SideBar />
                             </div>
                             <div className="main-home">
                                 {
@@ -102,19 +105,19 @@ function Home() {
                             bannerOpen
                             &&
                             <section className="current-large-banner">
-                                <CurrentPlayingLarge/>
+                                <CurrentPlayingLarge />
                             </section>
                         }
                         <React.Fragment>
                             {
                                 currMusic
                                     ?
-                                    <FooterMusicPlayer music={currMusic}/>
+                                    <FooterMusicPlayer music={currMusic} />
                                     :
-                                    <FooterSelectMusic/>
+                                    <FooterSelectMusic />
                             }
                             {
-                                screenSize <= 970 && <BottomNavigationMobile/>
+                                screenSize <= 970 && <BottomNavigationMobile />
                             }
                         </React.Fragment>
                     </>

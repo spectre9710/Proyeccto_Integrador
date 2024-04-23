@@ -8,14 +8,16 @@ import musicDB from "../../../db/music";
 function AddMusic() {
     const useStyle = useContext(ThemeContext);
     const imageRef = useRef();
-    const musicRef = useRef(); 
-    const [selectedImage, setSelectedImage] = useState(null); 
-    const [selectedMusic, setSelectedMusic] = useState(null); 
+    const musicRef = useRef();
+    const [selectedImage, setSelectedImage] = useState(null);
+    const [selectedMusic, setSelectedMusic] = useState(null);
     const [nameMusic, setNameMusic] = useState("");
     const [nameSinger, setNameSinger] = useState("");
     const [language, setLanguage] = useState("0");
-    const [imagePreview, setImagePreview] = useState(""); 
+    const [imagePreview, setImagePreview] = useState("");
     const [musicPreview, setMusicPreview] = useState("");
+    const [formFilled, setFormFilled] = useState(false);
+    const [errorMessage, setErrorMessage] = useState("");
 
     const selectImage = () => {
         imageRef.current.click();
@@ -25,7 +27,18 @@ function AddMusic() {
         musicRef.current.click();
     };
 
-       const addMusic = () => {
+    const validateForm = () => {
+        if (!selectedImage || !selectedMusic || !nameMusic || !nameSinger || language === "0") {
+            setErrorMessage("Todos los campos son obligatorios");
+            return false;
+        }
+        setErrorMessage("");
+        return true;
+    };
+
+    const addMusic = () => {
+        if (!validateForm()) return;
+
         const newMusic = {
             id: musicDB.length,
             name: nameMusic,
@@ -37,6 +50,15 @@ function AddMusic() {
             musicName: selectedMusic,
         };
         musicDB.push(newMusic);
+        setFormFilled(true);
+        setTimeout(() => {
+            setFormFilled(false);
+        }, 2000);
+        setSelectedImage(null);
+        setSelectedMusic(null);
+        setNameMusic("");
+        setNameSinger("");
+        setLanguage("0");
     };
 
     useEffect(() => {
@@ -82,6 +104,7 @@ function AddMusic() {
                         <option value="1">Español</option>
                         <option value="2">Ingles</option>
                     </select>
+                    {errorMessage && <p style={{ color: "red" }}>{errorMessage}</p>}
                 </div>
                 <div className="d2">
                     <div>
@@ -91,6 +114,7 @@ function AddMusic() {
                         <Button style={{ backgroundColor: useStyle.theme }} variant={"contained"} endIcon={<Add />} onClick={addMusic}>
                             Agregar
                         </Button>
+                        {formFilled && <p style={{ color: "green", textAlign: "center" }}>Canción agregada con exito</p>}
                     </div>
                     <div className={"preview"}>
                         <h3>Vista previa</h3>
@@ -107,4 +131,3 @@ function AddMusic() {
 }
 
 export default AddMusic;
-

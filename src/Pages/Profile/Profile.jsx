@@ -6,23 +6,25 @@ import MusicCard from "../../components/fragment/MusicCard/MusicCard";
 import Container from "../../components/fragment/Container/Container";
 import Grade from 'grade-js';
 import SideBarOptions from "../../components/fragment/SideBarOptions/SideBarOptions";
-import { PlaylistPlay, Favorite } from "@material-ui/icons";
+import { PlaylistPlay } from "@material-ui/icons";
 
 function Profile() {
 
     const { playlists } = useSelector(state => state.musicReducer);
     const [favoriteSongs, setFavoriteSongs] = useState([]);
-
-
+    const [userUploadedSongs, setUserUploadedSongs] = useState([]);
 
     useEffect(() => {
         const storedFavoriteSongs = JSON.parse(localStorage.getItem("favoriteSongs")) || [];
-        const filteredSongs = playlists.filter(song => storedFavoriteSongs.includes(song.id));
-        setFavoriteSongs(filteredSongs);
+        const filteredFavoriteSongs = playlists.filter(song => storedFavoriteSongs.includes(song.id));
+        setFavoriteSongs(filteredFavoriteSongs);
+
+        // Filter user uploaded songs
+        const storedUserData = JSON.parse(localStorage.getItem("userData"));
+        const userId = storedUserData ? storedUserData.id : null;
+        const filteredUserUploadedSongs = playlists.filter(song => song.type === "custom" && song.userId === userId);
+        setUserUploadedSongs(filteredUserUploadedSongs);
     }, [playlists]);
-
-
-
 
     useEffect(() => {
         Grade(document.querySelectorAll('.gradient-wrap'))
@@ -58,7 +60,7 @@ function Profile() {
                 <div className="bottom-profile">
                     {favoriteSongs.length > 0 ? (
                         <div>
-                            <h3>Favoritos <Favorite /> </h3>
+                            <h3>Favoritos</h3>
                             <div className="most-played">
                                 {favoriteSongs.map((item) => (
                                     <MusicCard key={item.id} music={item} />
@@ -68,10 +70,21 @@ function Profile() {
                     ) : (
                         <div className="empty-favorites">
                             <h3>Bienvenido a Haimusic!</h3>
-                            <p>¡Gracias por elegirnos como tu plataforma de música favorita! Sumérgete en nuestro catálogo y disfruta de una experiencia musical única.</p>                        </div>
+                            <p>¡Gracias por elegirnos como tu plataforma de música favorita! Sumérgete en nuestro catálogo y disfruta de una experiencia musical única.</p>
+                        </div>
+                    )}
+
+                    {userUploadedSongs.length > 0 && (
+                        <div>
+                            <h3>Canciones Subidas</h3>
+                            <div className="user-uploaded-songs">
+                                {userUploadedSongs.map((item) => (
+                                    <MusicCard key={item.id} music={item} />
+                                ))}
+                            </div>
+                        </div>
                     )}
                 </div>
-
             </div>
         </Container>
     );
